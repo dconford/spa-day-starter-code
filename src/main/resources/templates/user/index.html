@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: formatting"></head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+    <div th:unless="${user.getUsername() == null}">
+
+    <h2 th:text=" 'Welcome '+ ${user.getUsername()}">Welcome</h2>
+
+    </div>
+
+    <a th:href="@{/}" class="btn btn-success">Spa Services</a>
+
+
+    <p th:unless="${users} and ${users.size()}">No Users Listed!</p>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tr th:each= "user : ${users}">
+            <td><a th:href="@{/user/details/{id}(id=${user.id})}" th:text= "${user.username}"></a></td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+<td th:each="category : ${tableChoices}">
+    <ul>
+        <li th:each="item : ${category.value}">
+            <a th:href="@{/list/jobs(column=${category.key},value=${item})}" th:text="${item}"></a>
+        </li>
+    </ul>
+</td>

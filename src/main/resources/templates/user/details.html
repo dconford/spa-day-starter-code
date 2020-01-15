@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: formatting"></head>
+<body class="container">
+
+<nav th:replace="fragments :: navigation"></nav>
+
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date Registered</th>
+    </tr>
+    </thead>
+        <td th:text= "${user.id}"></td>
+        <td th:text= "${user.username}"></td>
+        <td th:text= "${user.email}"></td>
+        <td th:text="${user.creationdate}"></td>
+        <td>
+            <a th:href="@{/user/edit/{id}(id=${user.id})}" class="btn btn-success">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/user/delete/{id}(id=${user.id})}" th:action="post" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
